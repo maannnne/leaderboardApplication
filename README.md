@@ -1,0 +1,2 @@
+# leaderboardApplication
+-> meteor run
