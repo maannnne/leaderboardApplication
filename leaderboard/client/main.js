@@ -1,22 +1,28 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+//new Mongo.Collection('players');
+PlayersList = new Mongo.Collection('players');
+// PlayersList.insert({name: "David", score: 0});
+// PlayersList.insert({name: "Bob", score: 0});
+// PlayersList.insert({name: "Betty", score: 0});
 
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+
+if(Meteor.isClient){
+  console.log("Hello Client");
+}
+
+Template.leaderboard.helpers({
+  'getPlayer': () => {
+    return PlayersList.find();
+  }
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
+Template.leaderboard.events({
+    'click .player': () => {
+      Session.set('selectedPlayer', )
+    }
+
+})
