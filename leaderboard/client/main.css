@@ -1,6 +1,9 @@
 body {
   padding: 10px;
   font-family: sans-serif;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 .selected {
@@ -16,5 +19,7 @@ tr, td{
 }
 
 .increment {
-  
+  padding: 30px;
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

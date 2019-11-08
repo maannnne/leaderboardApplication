@@ -3,7 +3,7 @@
 </head>
 
 <body>
-  <h1>Select your favourite player!</h1>
+  <h2>Select your favourite player!</h2>
   {{ > leaderboard }}
 </body>
 
@@ -11,10 +11,10 @@
   <table>
     {{#each getPlayer}}
     <tr>
-        <td class = "player {{selectedClassHelper}}" > {{name}} >>> {{score}}
-          <input type="submit" value="Increment!" class="increment">
+        <td class = "player {{selectedClassHelper}}" >{{name}} >>> {{score}}
         </td>
     </tr>
-    {{/each}}   
+    {{/each}} 
+    <input type="submit" value="Increment!" class="increment">  
   </table>
 </template>
