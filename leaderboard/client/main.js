@@ -7,9 +7,6 @@ import './main.html';
 PlayersList = new Mongo.Collection('players');
 //PlayersList.insert({name: "David", score: 0});
 
-if(Meteor.isClient){
-  console.log("Hello Client");
-}
 
 Template.leaderboard.helpers({
   'getPlayer': () => {
@@ -30,10 +27,15 @@ Template.leaderboard.events({
       var playersID = this._id;
       Session.set('selectedPlayer', playersID);
     },
+
     'click .increment': function(){
       var selectedPlayer = Session.get('selectedPlayer');
       PlayersList.update(selectedPlayer, {$inc: {score: 1}});
+    },
 
+    'click .decrement': function() {
+      var selectedPlayer = Session.get('selectedPlayer');
+      PlayersList.update(selectedPlayer, {$inc: {score: -1}});
     }
     //DO NOT USE ARROW FUNTIONS WHEN U NEED TO USE THIS KEYWORD
     //BASED ON CONTEXT IN WHICH IT IS CALLED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
