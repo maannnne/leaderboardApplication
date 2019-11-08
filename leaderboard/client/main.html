@@ -3,22 +3,18 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Select your favourite player!</h1>
   {{ > leaderboard }}
 </body>
 
-
-
-
 <template name="leaderboard">
-  Hello, I am a template called Leaderboard!
-  <br>
-  <ul>
+  <table>
     {{#each getPlayer}}
-    <li class="player"> {{name}} >>> {{score}} </li>
-    {{/each}} 
-  </ul>
-  <br>
+    <tr>
+        <td class = "player {{selectedClassHelper}}" > {{name}} >>> {{score}}
+          <input type="submit" value="Increment!" class="increment">
+        </td>
+    </tr>
+    {{/each}}   
+  </table>
 </template>
-
-
