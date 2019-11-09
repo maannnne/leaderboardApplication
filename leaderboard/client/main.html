@@ -12,7 +12,10 @@
     {{#each getPlayer}}
     <tr> <td class = "player {{selectedClassHelper}}" > {{name}} >>> {{score}} </td> </tr>
     {{/each}} 
-    <input type="submit" value="+ 1 to score" class="increment">
-    <input type="submit" value="- 1 from score" class="decrement">   
+    <input type="submit" value="+1 to score" class="increment">
+    <input type="submit" value="-1 from score" class="decrement">   
   </table>
+  {{#if showSelectedPlayer}}
+    <p>Selected Player: {{showSelectedPlayer.name}}</p>
+  {{/if}}
 </template>

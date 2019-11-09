@@ -10,7 +10,7 @@ PlayersList = new Mongo.Collection('players');
 
 Template.leaderboard.helpers({
   'getPlayer': () => {
-    return PlayersList.find().fetch();
+    return PlayersList.find({}, {sort: {score: -1, name: 1}}); //sort the players in score descending and name ascending order
   },
   'selectedClassHelper': function() {
     var playersID = this._id;
@@ -18,6 +18,14 @@ Template.leaderboard.helpers({
     if(playersID == selectedPlayer){
       return "selected"; //this is the class name
     }
+  },
+  'showSelectedPlayer': function() {
+    var selectedPlayer = Session.get('selectedPlayer');
+    console.log(selectedPlayer);
+    return PlayersList.findOne(selectedPlayer);  /*By using the findOne function, we can pass through the unique ID of a document as the only
+    argument, and we’re able to avoid unnecessary overhead since this function will only ever
+    attempt to retrieve a single document. It won’t look through the entire collection like the find
+    function would. */
   }
 });
 
@@ -35,7 +43,7 @@ Template.leaderboard.events({
 
     'click .decrement': function() {
       var selectedPlayer = Session.get('selectedPlayer');
-      PlayersList.update(selectedPlayer, {$inc: {score: -1}});
+      PlayersList.update(selectedPlayer, {$inc: {score: -   1}});
     }
     //DO NOT USE ARROW FUNTIONS WHEN U NEED TO USE THIS KEYWORD
     //BASED ON CONTEXT IN WHICH IT IS CALLED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
