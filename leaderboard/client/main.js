@@ -39,7 +39,6 @@ Template.leaderboard.events({
     'click .increment': function() {
       var selectedPlayer = Session.get('selectedPlayer');
       PlayersList.update(selectedPlayer, {$inc: {score: 1}});
-      console.log(selectedPlayer);
     },
 
     'click .decrement': function() {
@@ -49,7 +48,6 @@ Template.leaderboard.events({
 
     'click .removePlayer': function() {
       var selectedPlayer = Session.get('selectedPlayer');
-      console.log(selectedPlayer);
       PlayersList.remove({_id: selectedPlayer});
     }
 });
@@ -62,5 +60,8 @@ Template.addNewPlayer.events({
     if(newPlayerName){
       PlayersList.insert({name: newPlayerName, score: newPlayerScore});
     }
+    e.target.playerName.value = null;
+    e.target.playerScore.value = null;
   }
+  
 });
