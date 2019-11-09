@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { Template } from 'meteor/templating';
 import './main.html';
+
 //new Mongo.Collection('players');
 PlayersList = new Mongo.Collection('players');
 //PlayersList.insert({name: "David", score: 0});
@@ -44,17 +45,17 @@ Template.leaderboard.events({
       var selectedPlayer = Session.get('selectedPlayer');
       PlayersList.update(selectedPlayer, {$inc: {score: -   1}});
     },
+
     'click .removePlayer': function() {
       var selectedPlayer = Session.get('selectedPlayer');
       console.log(selectedPlayer);
       PlayersList.remove({_id: selectedPlayer});
     }
-
 });
 
 Template.addNewPlayer.events({
   'submit form': function(e) {
-    e.preventDefault(); //to prevent the browser default behaviour aka refresh after evey single click on submit 
+    e.preventDefault(); //to prevent the browser default behaviour aka refresh after every single click on submit 
     var newPlayerName = e.target.playerName.value;
     var newPlayerScore = e.target.playerScore.value;
     if(newPlayerName && newPlayerScore){

@@ -8,7 +8,7 @@ body {
 }
 
 .selected {
-  background-color: aquamarine;
+  background-color: cornflowerblue;
 }
 
 tr, td{
@@ -36,4 +36,8 @@ tr, td{
 .removePlayer {
   font-size: 13px;
   margin: 10px;
+}
+
+h3, h4, p {
+  color: #1565c0;
 }
