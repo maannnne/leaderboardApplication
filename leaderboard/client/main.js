@@ -56,10 +56,9 @@ Template.addNewPlayer.events({
   'submit form': function(e) {
     e.preventDefault(); //to prevent the browser default behaviour aka refresh after evey single click on submit 
     var newPlayerName = e.target.playerName.value;
-    console.log(newPlayerName);
     var newPlayerScore = e.target.playerScore.value;
-    console.log(newPlayerScore);
-    PlayersList.insert({name: newPlayerName, score: newPlayerScore});
-    newPlayerName = null;
+    if(newPlayerName && newPlayerScore){
+      PlayersList.insert({name: newPlayerName, score: newPlayerScore});
+    }
   }
 });
