@@ -19,13 +19,11 @@ tr, td{
 }
 
 .increment {
-  padding: 20px;
-  font-size: 15px;
+  font-size: 13px;
   margin: 10px;
 }
 
 .decrement {
-  padding: 20px;
-  font-size: 15px;
+  font-size: 13px;
   margin: 10px;
 }
