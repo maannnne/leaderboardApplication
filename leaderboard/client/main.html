@@ -16,9 +16,9 @@
   </table>
   {{#if showSelectedPlayer}}
     <p>Selected Player: {{showSelectedPlayer.name}}</p>
-    <input type="submit" value="+1 to score" class="increment waves-effect waves-light blue darken-3 btn" >
-    <input type="submit" value="-1 from score" class="decrement waves-effect waves-light blue darken-3 btn">
-    <input type="submit" value="Remove Player" class="removePlayer waves-effect waves-light blue darken-3 btn">
+    <input type="submit" value="+1 to score" class="increment btn">
+    <input type="submit" value="-1 from score" class="decrement btn">
+    <input type="submit" value="Remove Player" class="removePlayer btn">
   {{/if}}
 </template>
 
@@ -29,7 +29,7 @@
     <h4>Add a New Player!</h4>
     <input type="text" name="playerName" placeholder="Type players name">
     <input type="number" name="playerScore" placeholder="Type players score">
-    <input type="submit" value="Add player" class="addPlayer waves-effect waves-light blue darken-3 btn">
+    <input type="submit" value="Add player" class="addPlayer btn">
   </form>
 
 </template>

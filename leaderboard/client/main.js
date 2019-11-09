@@ -39,11 +39,12 @@ Template.leaderboard.events({
     'click .increment': function() {
       var selectedPlayer = Session.get('selectedPlayer');
       PlayersList.update(selectedPlayer, {$inc: {score: 1}});
+      console.log(selectedPlayer);
     },
 
     'click .decrement': function() {
       var selectedPlayer = Session.get('selectedPlayer');
-      PlayersList.update(selectedPlayer, {$inc: {score: -   1}});
+      PlayersList.update(selectedPlayer, {$inc: {score: -1}});
     },
 
     'click .removePlayer': function() {
@@ -57,8 +58,8 @@ Template.addNewPlayer.events({
   'submit form': function(e) {
     e.preventDefault(); //to prevent the browser default behaviour aka refresh after every single click on submit 
     var newPlayerName = e.target.playerName.value;
-    var newPlayerScore = e.target.playerScore.value;
-    if(newPlayerName && newPlayerScore){
+    var newPlayerScore = Number(e.target.playerScore.value);
+    if(newPlayerName){
       PlayersList.insert({name: newPlayerName, score: newPlayerScore});
     }
   }
