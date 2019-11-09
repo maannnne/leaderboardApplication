@@ -21,7 +21,6 @@ Template.leaderboard.helpers({
   },
   'showSelectedPlayer': function() {
     var selectedPlayer = Session.get('selectedPlayer');
-    console.log(selectedPlayer);
     return PlayersList.findOne(selectedPlayer);  /*By using the findOne function, we can pass through the unique ID of a document as the only
     argument, and we’re able to avoid unnecessary overhead since this function will only ever
     attempt to retrieve a single document. It won’t look through the entire collection like the find
@@ -36,7 +35,7 @@ Template.leaderboard.events({
       Session.set('selectedPlayer', playersID);
     },
 
-    'click .increment': function(){
+    'click .increment': function() {
       var selectedPlayer = Session.get('selectedPlayer');
       PlayersList.update(selectedPlayer, {$inc: {score: 1}});
     },
@@ -45,7 +44,16 @@ Template.leaderboard.events({
       var selectedPlayer = Session.get('selectedPlayer');
       PlayersList.update(selectedPlayer, {$inc: {score: -   1}});
     }
-    //DO NOT USE ARROW FUNTIONS WHEN U NEED TO USE THIS KEYWORD
-    //BASED ON CONTEXT IN WHICH IT IS CALLED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+});
 
+Template.addNewPlayer.events({
+  'submit form': function(e) {
+    e.preventDefault(); //to prevent the browser default behaviour aka refresh after evey single click on submit 
+    var newPlayerName = e.target.playerName.value;
+    console.log(newPlayerName);
+    var newPlayerScore = e.target.playerScore.value;
+    console.log(newPlayerScore);
+    PlayersList.insert({name: newPlayerName, score: newPlayerScore});
+
+  }
 });

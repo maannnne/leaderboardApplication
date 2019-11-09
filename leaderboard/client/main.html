@@ -5,6 +5,7 @@
 <body>
   <h2>Select your favourite player!</h2>
   {{ > leaderboard }}
+  {{ > addNewPlayer }}
 </body>
 
 <template name="leaderboard">
@@ -18,4 +19,13 @@
     <input type="submit" value="+1 to score" class="increment">
     <input type="submit" value="-1 from score" class="decrement">
   {{/if}}
+</template>
+
+<template name="addNewPlayer">
+  <form>
+    <input type="text" name="playerName" placeholder="Type players name">
+    <input type="number" name="playerScore" placeholder="Type players score">
+    <input type="submit" value="Add player" class="addPlayer">
+  </form>
+
 </template>
