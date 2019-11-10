@@ -6,15 +6,16 @@
   <h3>Select your favourite player!</h3>
   {{ > leaderboard }}
   {{ > addNewPlayer }}
+  {{ > loginButtons }}
 </body>
 
 <template name="leaderboard">
   <table>
-    {{#each getPlayer}}
+    {{#each getPlayer}} <!--to loop through all the players-->
     <tr> <td class = "player {{selectedClassHelper}}" > {{name}} >>> {{score}} </td> </tr>
     {{/each}}    
   </table>
-  {{#if showSelectedPlayer}}
+  {{#if showSelectedPlayer}} <!--to make sure we're not displaying something null-->
     <p>Selected Player: {{showSelectedPlayer.name}}</p>
     <input type="submit" value="+1 to score" class="increment btn blue darken-3">
     <input type="submit" value="-1 from score" class="decrement btn blue darken-3">
@@ -23,13 +24,14 @@
 </template>
 
 <template name="addNewPlayer">
+  {{#if currentUser}}
   <form>
     <br>
     <hr>
     <h4>Add a New Player!</h4>
-    <input type="text" name="playerName" placeholder="Type players name">
+    <input type="text" name="playerName" placeholder="Type players name" required='true'>
     <input type="number" name="playerScore" placeholder="Type players score">
     <input type="submit" value="Add player" class="addPlayer btn blue darken-3">
   </form>
-
+  {{/if}}
 </template>
