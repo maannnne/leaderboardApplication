@@ -12,7 +12,9 @@ console.log(Meteor.users);
 if(Meteor.isClient){
   Template.leaderboard.helpers({
     'getPlayer': () => {
-      return PlayersList.find({}, {sort: {score: -1, name: 1}}); //sort the players in score descending and name ascending order
+      var currentUserId = Meteor.userId(); 
+      return PlayersList.find({createdBy: currentUserId}, {sort: {score: -1, name: 1}}); //sort the players in score descending and name ascending order
+      //each user now has their own unique leaderboard w current user ID
     },
     'selectedClassHelper': function() {
       var playersID = this._id;
@@ -58,8 +60,10 @@ if(Meteor.isClient){
       e.preventDefault(); //to prevent the browser default behaviour aka refresh after every single click on submit 
       var newPlayerName = e.target.playerName.value;
       var newPlayerScore = Number(e.target.playerScore.value);
+      var currentUserId = Meteor.userId();
+      console.log(currentUserId);
       if(newPlayerName){
-        PlayersList.insert({name: newPlayerName, score: newPlayerScore});
+        PlayersList.insert({name: newPlayerName, score: newPlayerScore, createdBy: currentUserId});
       }
       e.target.playerName.value = null;
       e.target.playerScore.value = null;
