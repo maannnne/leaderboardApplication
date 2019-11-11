@@ -7,12 +7,10 @@ import './main.html';
 
 PlayersList = new Mongo.Collection('players');
 
-console.log(Meteor.users);
-
 if(Meteor.isClient){
   Template.leaderboard.helpers({
     'getPlayer': () => {
-      var currentUserId = Meteor.userId(); 
+      var currentUserId = Meteor.userId();
       return PlayersList.find({createdBy: currentUserId}, {sort: {score: -1, name: 1}}); //sort the players in score descending and name ascending order
       //each user now has their own unique leaderboard w current user ID
     },
@@ -30,8 +28,9 @@ if(Meteor.isClient){
       attempt to retrieve a single document. It won’t look through the entire collection like the find
       function would. */
     },
-    'getAllPlayers': function() {
-      return PlayersList.find().fetch();
+    'getPlayers': function() {
+      var currentUserId = Meteor.userId();
+      return PlayersList.find({createdBy: currentUserId}).fetch();
     }
   });
 
@@ -64,13 +63,15 @@ if(Meteor.isClient){
       var newPlayerName = e.target.playerName.value;
       var newPlayerScore = Number(e.target.playerScore.value);
       var currentUserId = Meteor.userId();
-      console.log(currentUserId);
-      if(newPlayerName){
+      if(newPlayerName.trim().length != 0){
         PlayersList.insert({name: newPlayerName, score: newPlayerScore, createdBy: currentUserId});
       }
+      else {
+        alert('Please select a valid string');
+      }
+      
       e.target.playerName.value = null;
       e.target.playerScore.value = null;
     }
-    
   });
 }
