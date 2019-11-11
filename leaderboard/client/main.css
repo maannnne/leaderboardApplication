@@ -8,7 +8,7 @@ body {
 }
 
 .selected {
-  background-color: cornflowerblue;
+  background-color: #1565c0;
 }
 
 tr, td{
@@ -40,4 +40,16 @@ tr, td{
 
 h3, h4, p {
   color: #1565c0;
+}
+
+.login-link-text{
+  color: white;
+  background-color: #1565c0;
+  padding: 8px;
+  font-size: 13px;
+}
+
+.login-button {
+  background-color: #1565c0 !important; 
+
 }

@@ -29,6 +29,9 @@ if(Meteor.isClient){
       argument, and we’re able to avoid unnecessary overhead since this function will only ever
       attempt to retrieve a single document. It won’t look through the entire collection like the find
       function would. */
+    },
+    'getAllPlayers': function() {
+      return PlayersList.find().fetch();
     }
   });
 
