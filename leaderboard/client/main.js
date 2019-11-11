@@ -14,6 +14,7 @@ if(Meteor.isClient){
       return PlayersList.find({createdBy: currentUserId}, {sort: {score: -1, name: 1}}); //sort the players in score descending and name ascending order
       //each user now has their own unique leaderboard w current user ID
     },
+
     'selectedClassHelper': function() {
       var playersID = this._id;
       var selectedPlayer = Session.get('selectedPlayer');
@@ -21,6 +22,7 @@ if(Meteor.isClient){
         return "selected"; //this is the class name
       }
     },
+
     'showSelectedPlayer': function() {
       var selectedPlayer = Session.get('selectedPlayer');
       var currentUserId = Meteor.userId();
@@ -29,6 +31,7 @@ if(Meteor.isClient){
       attempt to retrieve a single document. It won’t look through the entire collection like the find
       function would. */
     },
+    
     'getPlayers': function() {
       var currentUserId = Meteor.userId();
       return PlayersList.find({createdBy: currentUserId}).fetch();

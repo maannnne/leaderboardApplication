@@ -1,16 +1,21 @@
 <head>
-  <title>leaderboard</title>
+  <title>Leaderboard</title>
 </head>
 
 <body>
+  {{ > mainPage }}
   {{ > leaderboard }}
   {{ > addNewPlayer }}
   {{ > loginButtons }}
 </body>
 
+<template name="mainPage">
+    <h4>Welcome to Leaderboard!</h4>
+</template>
+
+
 <template name="leaderboard">
   {{#if currentUser}} <!--so only signed in user can see and use this form-->
-    <h3>Select your favourite player!</h3>
   <table>
     {{#each getPlayer}} <!--to loop through all the players-->
     <tr> <td class = "player {{selectedClassHelper}}" > {{name}} >>> {{score}} </td> </tr>
