@@ -10,7 +10,7 @@ PlayersList = new Mongo.Collection('players');
 if(Meteor.isClient){
   Meteor.subscribe('thePlayers');
 
-  
+
   Template.leaderboard.helpers({
     'getPlayer': () => {
       var currentUserId = Meteor.userId();
@@ -29,10 +29,7 @@ if(Meteor.isClient){
     'showSelectedPlayer': function() {
       var selectedPlayer = Session.get('selectedPlayer');
       var currentUserId = Meteor.userId();
-      return PlayersList.findOne({createdBy: currentUserId, _id: selectedPlayer});  /*By using the findOne function, we can pass through the unique ID of a document as the only
-      argument, and we’re able to avoid unnecessary overhead since this function will only ever
-      attempt to retrieve a single document. It won’t look through the entire collection like the find
-      function would. */
+      return PlayersList.findOne({createdBy: currentUserId, _id: selectedPlayer});
     },
 
     'getPlayers': function() {
@@ -60,25 +57,23 @@ if(Meteor.isClient){
 
       'click .removePlayer': function() {
         var selectedPlayer = Session.get('selectedPlayer');
-        PlayersList.remove({_id: selectedPlayer});
+        Meteor.call('removePlayer', selectedPlayer);
       }
   });
 
   Template.addNewPlayer.events({
     'submit form': function(e) {
-      e.preventDefault(); //to prevent the browser default behaviour aka refresh after every single click on submit 
+      e.preventDefault();
       var newPlayerName = e.target.playerName.value;
       //var newPlayerName = $('[name=playerName]').val();
       //can do this too
       var newPlayerScore = Number(e.target.playerScore.value);
-      var currentUserId = Meteor.userId();
       if(newPlayerName.trim().length != 0){
-        PlayersList.insert({name: newPlayerName, score: newPlayerScore, createdBy: currentUserId});
+        Meteor.call('insertPlayer', newPlayerName, newPlayerScore, Meteor.userId());
       }
       else {
         alert('Please select a valid string');
       }
-      
       e.target.playerName.value = null;
       e.target.playerScore.value = null;
     }
