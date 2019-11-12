@@ -21,7 +21,8 @@ if(Meteor.isServer) {
      },
 
      'removePlayer': function(playerId) {
-       PlayersList.remove({_id: playerId});
+       var currentUserId = this.userId;
+       PlayersList.remove({_id: playerId, createdBy: currentUserId});
      },
 
     //  'decrement': function(playerId) {
