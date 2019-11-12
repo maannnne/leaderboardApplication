@@ -8,6 +8,8 @@ Meteor.startup(() => {
 export const PlayersList = new Mongo.Collection('players');
 
 
-if(Meteor.isServer){
-  console.log("Hello Server");
+if(Meteor.isServer) {
+    Meteor.publish('thePlayers', function(){ 
+    return PlayersList.find({createdBy: this.userId})
+   });
 }

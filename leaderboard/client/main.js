@@ -8,6 +8,9 @@ import './main.html';
 PlayersList = new Mongo.Collection('players');
 
 if(Meteor.isClient){
+  Meteor.subscribe('thePlayers');
+
+  
   Template.leaderboard.helpers({
     'getPlayer': () => {
       var currentUserId = Meteor.userId();
@@ -31,7 +34,7 @@ if(Meteor.isClient){
       attempt to retrieve a single document. It won’t look through the entire collection like the find
       function would. */
     },
-    
+
     'getPlayers': function() {
       var currentUserId = Meteor.userId();
       return PlayersList.find({createdBy: currentUserId}).fetch();
