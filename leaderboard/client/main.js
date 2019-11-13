@@ -10,7 +10,6 @@ PlayersList = new Mongo.Collection('players');
 if(Meteor.isClient){
   Meteor.subscribe('thePlayers');
 
-
   Template.leaderboard.helpers({
     'getPlayer': () => {
       var currentUserId = Meteor.userId();
@@ -47,12 +46,12 @@ if(Meteor.isClient){
 
       'click .increment': function() {
         var selectedPlayer = Session.get('selectedPlayer');
-        PlayersList.update(selectedPlayer, {$inc: {score: 1}});
+        Meteor.call('increment', selectedPlayer);
       },
 
       'click .decrement': function() {
         var selectedPlayer = Session.get('selectedPlayer');
-        PlayersList.update(selectedPlayer, {$inc: {score: -1}});
+        Meteor.call('decrement',  selectedPlayer);
       },
 
       'click .removePlayer': function() {

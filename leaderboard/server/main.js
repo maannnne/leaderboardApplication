@@ -25,10 +25,15 @@ if(Meteor.isServer) {
        PlayersList.remove({_id: playerId, createdBy: currentUserId});
      },
 
-    //  'decrement': function(playerId) {
-    //    PlayersList.update({score: {$inc: {score: -1}}})
-
-    //  }
-    //no ready yet
+     'decrement': function(playerId) {  
+       var currentUserId = this.userId;
+       PlayersList.update({_id: playerId, createdBy: currentUserId}, {$inc: {score: -1}});
+     },
+     
+     'increment': function(playerId) {
+       var currentUserId = this.userId;
+       PlayersList.update({_id: playerId, createdBy: currentUserId}, {$inc: {score: 1}});
+     }
+   
    });
 }
