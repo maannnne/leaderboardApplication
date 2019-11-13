@@ -3,42 +3,11 @@
 </head>
 
 <body>
-  {{ > mainPage }}
+  <h4>Welcome to Leaderboard!</h4>
   {{ > leaderboard }}
   {{ > addNewPlayer }}
   {{ > loginButtons }}
 </body>
 
-<template name="mainPage">
-    <h4>Welcome to Leaderboard!</h4>
-</template>
 
 
-<template name="leaderboard">
-  {{#if currentUser}} <!--so only signed in user can see and use this form-->
-  <table>
-    {{#each getPlayer}} <!--to loop through all the players-->
-    <tr> <td class = "player {{selectedClassHelper}}" > {{name}} >>> {{score}} </td> </tr>
-    {{/each}}    
-  </table>
-  {{#if showSelectedPlayer}} <!--to make sure we're not displaying something null-->
-    <p>Selected Player: {{showSelectedPlayer.name}}</p>
-    <input type="submit" value="-1 from score" class="decrement btn blue darken-3">
-    <input type="submit" value="+1 to score" class="increment btn blue darken-3">
-    <input type="submit" value="Remove Player" class="removePlayer btn blue darken-3">
-  {{/if}}
-  {{/if}}
-</template>
-
-<template name="addNewPlayer">
-  {{#if currentUser}} <!--so only signed in user can see and use this form-->
-  <form>
-    <br>
-    <hr>
-    <h4>Add a New Player!</h4>
-    <input type="text" name="playerName" placeholder="Type players name" required='true' maxlength="30">
-    <input type="number" name="playerScore" placeholder="Type players score" max="99999" min="-99999">
-    <input type="submit" value="Add player" class="addPlayer btn blue darken-3">
-  </form>
-  {{/if}}
-</template>

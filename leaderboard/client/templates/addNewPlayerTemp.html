@@ -1,0 +1,12 @@
+<template name="addNewPlayer">
+    {{#if currentUser}} <!--so only signed in user can see and use this form-->
+    <form>
+      <br>
+      <hr>
+      <h4>Add a New Player!</h4>
+      <input type="text" name="playerName" placeholder="Type players name" required='true' maxlength="30">
+      <input type="number" name="playerScore" placeholder="Type players score" max="99999" min="-99999">
+      <input type="submit" value="Add player" class="addPlayer btn blue darken-3">
+    </form>
+    {{/if}}
+  </template>
